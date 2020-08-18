@@ -1,0 +1,18 @@
+header{
+    color : orangered;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+div{
+    color : steelblue;
+    font-family: Arial, Helvetica, sans-serif; 
+    margin-top: 1%;
+    margin-bottom : 1%;
+    margin-left: 2%;
+}
+body{
+    margin: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
