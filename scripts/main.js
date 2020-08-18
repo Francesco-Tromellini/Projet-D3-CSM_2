@@ -3,6 +3,12 @@ const width = 600;
 const height = 300;
 const margin = { top: 20, right: 0, bottom: 20, left: 20 };
 
+d3.csv('Projet visualisation.CSV', function (d){
+   return{
+      
+   }
+} )
+
 // Données
 const fruits = [
   { name: "🍊", count: 21 , color: 'orange' },
