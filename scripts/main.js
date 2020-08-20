@@ -3,82 +3,109 @@ const width = 400;
 const height = 300;
 const margin = { top: 20, right: 20, bottom: 20, left: 40 };
 
-d3.dsv(';','Data_2.CSV', function (d){
-   return{
-      year: d.Year,
-      variety: d.Variety,
-      production: d.Production,
-   }
-} ).then(function(data){
+let productionData ;
+let matScaleX, matScaleY ;
+let matColorScale ;
+let matBars ;
+let matTitles ;
 
-   //const year = data.filter(d => d.year === '2019')
-   const variety = data.filter(d => d.variety === 'Carnaroli')
+function setup () {
 
-   console.log(variety);
-   
-   // Créer l'élément SVG et le configurer
+   loadData();
+
+   setupProductionOf();
+}
+
+
+function loadData(){
+   d3.dsv(';','Data_2.CSV', function (d){
+      return{
+         year: d.Year,
+         variety: d.Variety,
+         production: d.Production,
+      }
+   } ).then(onDataLoaded);
+}
+
+function onDataLoaded(data){
+   productionData = data;
+   graphProductionOf('Carnaroli');
+}
+
+function setupProductionOf(){
+
+   // élément SVG et le configurer
    const svg = d3.select('body')
    .append('svg')
    .attr('width', width)
    .attr('height', height)
-   .attr('style', 'font: 10px sans-serif')
-   
-   // Créer l'échelle horizontale (fonctions D3)
-   const x = d3.scaleBand()
-   .domain(variety.map(d => d.year))
+   .attr('style', 'font: 10px sans-serif');
+
+   // échelle horizontale
+   matScaleX = d3.scaleBand()
+   .domain([2016, 2017, 2018, 2019])
    .range([margin.left, width - margin.right])
    .padding(0.1)
-   .round(true)
-   
-   // Créer l'échelle verticale (fonctions D3)
-   const y = d3.scaleLinear()
-   .domain([0, d3.max(variety, d => d.production)])
+   .round(true);
+
+   // échelle verticale
+   matScaleY = d3.scaleLinear()
+   .domain([0, 2000])
    .range([height - margin.bottom - 5, margin.top])
-   .interpolate(d3.interpolateRound)
-   
-   const teinte = d3.scaleSequential()
-   .domain ([0, d3.max(variety, d => d.production)])
-   .interpolator(d3.interpolateBlues)
-   
-   // Ajouter les barres
-   svg.append('g')
-   .selectAll('rect')
-   .data(variety)
-   .enter()
-   .append('rect')
-   .attr('width', x.bandwidth())
-   .attr('height', d => y(0) - y(d.production))
-   .attr('x', d => x(d.year))
-   .attr('y', d => y(d.production))
-   .style('fill', d => teinte(d.production))
-   
-   // Ajouter les titres
-   svg.append('g')
+   .interpolate(d3.interpolateRound);
+
+   // échelle de couleur
+   matColorScale = d3.scaleSequential()
+   .domain ([0, 2000])
+   .interpolator(d3.interpolateBlues);
+
+   matBars = svg.append('g');
+   matTitles = svg.append('g')
    .style('fill', 'white')
    .attr('text-anchor', 'middle')
-   .attr('transform', `translate(${x.bandwidth() / 2}, 6)`)
-   .selectAll('text')
-   .data(variety)
-   .enter()
-   .append('text')
-   .attr('dy', '0.35em')
-   .attr('x', d => x(d.year))
-   .attr('y', d => y(d.production))
-   .text(d => d.production)
-   
-   // Ajouter l'axe horizontal
+   .attr('transform', `translate(${matScaleX.bandwidth() / 2}, 6)`);
+
+   // axe horizontal
    svg.append('g')
    .attr('transform', `translate(0, ${height - margin.bottom})`)
-   .call(d3.axisBottom(x))
+   .call(d3.axisBottom(matScaleX))
    .call(g => g.select('.domain').remove())
-   
-   // Ajouter l'axe vertical
-   svg.append('g')
-   .attr('transform', `translate(${margin.left}, 0)`)
-   .call(d3.axisLeft(y))
-   .call(g => g.select('.domain').remove())
-});
 
+    // axe vertical
+    svg.append('g')
+    .attr('transform', `translate(${margin.left}, 0)`)
+    .call(d3.axisLeft(matScaleY))
+    .call(g => g.select('.domain').remove())
+
+}
+
+function graphProductionOf (variety){
+
+   //const year = data.filter(d => d.year === '2019')
+   const data = productionData.filter(d => d.variety === 'Carnaroli')
+
+   // Barres
+   matBars.selectAll('rect')
+   .data(data)
+   .join('rect')
+      .attr('width', matScaleX.bandwidth())
+      .attr('height', d => matScaleY(0) - matScaleY(d.production))
+      .attr('x', d => matScaleX(d.year))
+      .attr('y', d => matScaleY(d.production))
+      .style('fill', d => matColorScale(d.production))
+
+   // Titres
+   matTitles.selectAll('text')
+   .data(data)
+   .join('text')
+      .attr('dy', '0.35em')
+      .attr('x', d => matScaleX(d.year))
+      .attr('y', d => matScaleY(d.production))
+      .text(d => d.production)
+
+}
+
+setup();
 
 
 // Source: https://observablehq.com/@d3/learn-d3-scales
