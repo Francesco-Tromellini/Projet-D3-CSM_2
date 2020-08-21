@@ -8,6 +8,15 @@ let matScaleX, matScaleY ;
 let matColorScale ;
 let matBars ;
 let matTitles ;
+let currentVariety = 'Carnaroli';
+
+const varieties = [
+   {id: 'Carnaroli', name: 'Carnaroli'},
+   {id: 'Vialone Nano', name: 'Vialone Nano'},
+   {id: 'Augusto', name: 'Augusto'},
+   {id: 'Wheat', name:'Blé'},
+   {id: 'Soy', name:'Soja'},
+];
 
 function setup () {
 
@@ -17,8 +26,10 @@ function setup () {
 }
 
 
+
+
 function loadData(){
-   d3.dsv(';','Data_2.CSV', function (d){
+   d3.dsv(';',`Data_2.CSV`, function (d){
       return{
          year: d.Year,
          variety: d.Variety,
@@ -27,9 +38,29 @@ function loadData(){
    } ).then(onDataLoaded);
 }
 
+function getVarietiesName(variety){
+   return varieties.find(v => v.id === variety).name;
+}
+
 function onDataLoaded(data){
    productionData = data;
-   graphProductionOf('Carnaroli');
+
+   d3.select('#varieties')
+      .selectAll('option')
+      .data(varieties)
+      .join('option')
+         .attr('value', d => d.id)
+         .text(d => d.name)
+         .each(function(d){
+            const option = d3.select(this);
+            if (d.id === currentVariety){
+               option.attr('selected', '');
+            }else {
+               option.attr('selected', null);
+            }
+         })
+
+   graphProductionOf();
 }
 
 function setupProductionOf(){
