@@ -29,7 +29,7 @@ function setup () {
 
 
 function loadData(){
-   d3.dsv(';',`Data_2.CSV`, function (d){
+   d3.dsv(';',`Data_${currentVariety}.CSV`, function (d){
       return{
          year: d.Year,
          variety: d.Variety,
@@ -38,9 +38,9 @@ function loadData(){
    } ).then(onDataLoaded);
 }
 
-function getVarietiesName(variety){
+/*function getVarietiesName(variety){
    return varieties.find(v => v.id === variety).name;
-}
+}*/
 
 function onDataLoaded(data){
    productionData = data;
@@ -55,7 +55,7 @@ function onDataLoaded(data){
             const option = d3.select(this);
             if (d.id === currentVariety){
                option.attr('selected', '');
-            }else {
+            } else {
                option.attr('selected', null);
             }
          })
@@ -102,18 +102,18 @@ function setupProductionOf(){
    .call(d3.axisBottom(matScaleX))
    .call(g => g.select('.domain').remove())
 
-    // axe vertical
-    svg.append('g')
-    .attr('transform', `translate(${margin.left}, 0)`)
-    .call(d3.axisLeft(matScaleY))
-    .call(g => g.select('.domain').remove())
+   // axe vertical
+   svg.append('g')
+   .attr('transform', `translate(${margin.left}, 0)`)
+   .call(d3.axisLeft(matScaleY))
+   .call(g => g.select('.domain').remove())
 
 }
 
-function graphProductionOf (variety){
+function graphProductionOf (){
 
    //const year = data.filter(d => d.year === '2019')
-   const data = productionData.filter(d => d.variety === 'Carnaroli')
+   const data = productionData.filter(d => d.variety === currentVariety)
 
    // Barres
    matBars.selectAll('rect')
