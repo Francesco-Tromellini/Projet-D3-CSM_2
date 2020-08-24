@@ -25,9 +25,6 @@ function setup () {
    setupProductionOf();
 }
 
-
-
-
 function loadData(){
    d3.dsv(';',`Data_${currentVariety}.CSV`, function (d){
       return{
@@ -37,10 +34,6 @@ function loadData(){
       }
    } ).then(onDataLoaded);
 }
-
-/*function getVarietiesName(variety){
-   return varieties.find(v => v.id === variety).name;
-}*/
 
 function onDataLoaded(data){
    productionData = data;
@@ -81,14 +74,14 @@ function setupProductionOf(){
 
    // échelle verticale
    matScaleY = d3.scaleLinear()
-   .domain([0, 2000])
+   .domain([0, 2700])
    .range([height - margin.bottom - 5, margin.top])
    .interpolate(d3.interpolateRound);
 
    // échelle de couleur
    matColorScale = d3.scaleSequential()
    .domain ([0, 2000])
-   .interpolator(d3.interpolateBlues);
+   .interpolator(d3.interpolateGreens);
 
    matBars = svg.append('g');
    matTitles = svg.append('g')
@@ -107,6 +100,12 @@ function setupProductionOf(){
    .attr('transform', `translate(${margin.left}, 0)`)
    .call(d3.axisLeft(matScaleY))
    .call(g => g.select('.domain').remove())
+
+   d3.select('#varieties').on('change', (e) => {
+      const variety = d3.event.target.value;
+      currentVariety = variety;
+      loadData();
+   })
 
 }
 
