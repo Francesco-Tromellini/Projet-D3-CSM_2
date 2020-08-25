@@ -32,7 +32,7 @@ function setup () {
 }
 
 function loadData(){
-   d3.dsv(';',`Data_${currentVariety}.CSV`, function (d){
+   d3.dsv(';',`Data/Data_${currentVariety}.CSV`, function (d){
       return{
          year: d.Year,
          variety: d.Variety,
