@@ -109,6 +109,16 @@ function setupHectaresOf(){
    .call(d3.axisLeft(hecScaleY))
    .call(g => g.select('.domain').remove())
 
+   // titre du graphique
+   svg.append('text')
+   .attr('font-size', '18px')
+   .attr('class', 'title')
+   .attr('x', width / 2 + margin.left / 2)
+   .attr('y', 20)
+   .attr('text-anchor', 'middle')
+   .text('Hectares')
+   .style('fill', 'red')
+
 }
 
 function graphHectaresOf(){
@@ -186,6 +196,17 @@ function setupProductionOf(){
       loadData();
    })
 
+   // titre du graphique
+   svg.append('text')
+   .attr('font-size', '18px')
+   .attr('class', 'title')
+   .attr('x', width / 2 + margin.left/2)
+   .attr('y', 20)
+   .attr('text-anchor', 'middle')
+   .text('Production (q)')
+   .style('fill', 'green')
+
+
 }
 
 function graphProductionOf (){
@@ -202,6 +223,10 @@ function graphProductionOf (){
       .attr('y', d => matScaleY(d.production))
       .style('fill', d => matColorScale(d.production))
 
+   matBars.transition()
+      .duration(1000)
+      .delay(2000)
+
    // Titres
    matTitles.selectAll('text')
    .data(data)
@@ -214,5 +239,3 @@ function graphProductionOf (){
 }
 
 setup();
-
-// Source: https://observablehq.com/@d3/learn-d3-scales
