@@ -28,7 +28,7 @@ function setup () {
 
    setupProductionOf();
 
-   setupProductionOf_2();
+   setupHectaresOf();
 }
 
 function loadData(){
@@ -60,11 +60,11 @@ function onDataLoaded(data){
                option.attr('selected', null);
             }
          })
-   graphProductionOf_2();
+   graphHectaresOf();
    graphProductionOf();
 }
 
-function setupProductionOf_2(){
+function setupHectaresOf(){
 
    // élément SVG et le configurer
    const svg = d3.select('body')
@@ -111,7 +111,7 @@ function setupProductionOf_2(){
 
 }
 
-function graphProductionOf_2(){
+function graphHectaresOf(){
    const data = productionData.filter(d => d.variety === currentVariety)
 
    // Barres
@@ -125,13 +125,14 @@ function graphProductionOf_2(){
       .style('fill', d => hecColorScale(d.hectares))
 
    // Titres
-   matTitles.selectAll('text')
+   hecTitles.selectAll('text')
    .data(data)
    .join('text')
       .attr('dy', '0.35em')
       .attr('x', d => hecScaleX(d.year))
       .attr('y', d => hecScaleY(d.hectares))
       .text(d => d.hectares)
+      
 }
 
 function setupProductionOf(){
