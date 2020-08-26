@@ -29,6 +29,7 @@ function setup () {
    setupProductionOf();
 
    setupHectaresOf();
+
 }
 
 function loadData(){
@@ -91,6 +92,7 @@ function setupHectaresOf(){
    .domain ([0, 50])
    .interpolator(d3.interpolateReds);
 
+   // barres et titres
    hecBars = svg.append('g');
    hecTitles = svg.append('g')
    .style('fill', 'white')
@@ -128,6 +130,8 @@ function graphHectaresOf(){
    hecBars.selectAll('rect')
    .data(data)
    .join('rect')
+      .transition()
+      .duration(1000)
       .attr('width', hecScaleX.bandwidth())
       .attr('height', d => hecScaleY(0) - hecScaleY(d.hectares))
       .attr('x', d => hecScaleX(d.year))
@@ -138,6 +142,8 @@ function graphHectaresOf(){
    hecTitles.selectAll('text')
    .data(data)
    .join('text')
+      .transition()
+      .duration(1000)
       .attr('dy', '0.35em')
       .attr('x', d => hecScaleX(d.year))
       .attr('y', d => hecScaleY(d.hectares))
@@ -190,6 +196,7 @@ function setupProductionOf(){
    .call(d3.axisLeft(matScaleY))
    .call(g => g.select('.domain').remove())
 
+   // mise à jour des données
    d3.select('#varieties').on('change', (e) => {
       const variety = d3.event.target.value;
       currentVariety = variety;
@@ -217,20 +224,20 @@ function graphProductionOf (){
    matBars.selectAll('rect')
    .data(data)
    .join('rect')
+      .transition()
+      .duration(1000)
       .attr('width', matScaleX.bandwidth())
       .attr('height', d => matScaleY(0) - matScaleY(d.production))
       .attr('x', d => matScaleX(d.year))
       .attr('y', d => matScaleY(d.production))
       .style('fill', d => matColorScale(d.production))
 
-   matBars.transition()
-      .duration(1000)
-      .delay(2000)
-
    // Titres
    matTitles.selectAll('text')
    .data(data)
    .join('text')
+      .transition()
+      .duration(1000)
       .attr('dy', '0.35em')
       .attr('x', d => matScaleX(d.year))
       .attr('y', d => matScaleY(d.production))
