@@ -17,6 +17,7 @@ let phColorScale ;
 let phBars ;
 let phTitles ;
 let currentVariety = 'Carnaroli';
+let maxHeight;
 
 const varieties = [
    {id: 'Carnaroli', name: 'Carnaroli'},
@@ -75,7 +76,7 @@ function onDataLoaded(data){
 function setupHectaresOf(){
 
    // élément SVG et le configurer
-   const svg = d3.select('body')
+   const svg = d3.select('#svgContainer')
    .append('svg')
    .attr('width', width)
    .attr('height', height)
@@ -160,7 +161,7 @@ function graphHectaresOf(){
 
 function setupProdOnHec(){
  // élément SVG et le configurer
- const svg = d3.select('body')
+ const svg = d3.select('#svgContainer')
  .append('svg')
  .attr('width', width)
  .attr('height', height)
@@ -246,7 +247,7 @@ function graphProdOnHec(){
 function setupProductionOf(){
 
    // élément SVG et le configurer
-   const svg = d3.select('body')
+   const svg = d3.select('#svgContainer')
    .append('svg')
    .attr('width', width)
    .attr('height', height)

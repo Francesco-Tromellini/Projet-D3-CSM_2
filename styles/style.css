@@ -1,12 +1,13 @@
 header{
     color : orangered;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: large;
+    font-weight: bold;
+    font-size: 32px;
     margin-top: 2%;
     margin-left: 2%;
 }
 div{
-    color : green;
+    color : #454545;
     font-family: Arial, Helvetica, sans-serif; 
     margin-top: 1%;
     margin-bottom : 1%;
@@ -15,4 +16,18 @@ div{
 body{
     margin: 1em;
     font-family: Arial, Helvetica, sans-serif;
+}
+html, body {
+    min-height: 100%;
+}
+.form-control {
+    width: auto !important;
+    display: inline-block !important;
+    padding: 5px !important;
+    height: auto !important;
+    font-size: inherit !important;
+    margin-left: 10px !important;
+}
+#container {    
+    text-align: center !important;
 }
