@@ -1,3 +1,12 @@
 # Projet de visualisation de données relatives aux récoltes de "Cascina San Maiolo" - années 2016/2019
 
-Ce projet vise à créer une visualisation des hectares utilisés pour chaque culture et des quintaux de céréales récolotées chaque année.
+ # Surces de données
+  Les données utilisées pour créer cette visualisation sont extraites du "carnet de campagne" de la ferme. Il est un document officiel vérifié chaque année par la police financière, mais, comme il est une entreprise familiale, les données ne sont pas rendues publiques.
+ # Variables retenues
+  Pour cette visualisation je n'ai retenu que quelques variables: année de production, quantité de quintaux produits, hectares cultivés et variétés. Toutes ces variables ont été utiles dans les graphiques.
+ # Explicitation de choix graphiques
+  Les choix graphiques tendent vers la simplicité et la clarté. Ce sont trois histogrammes de couleurs différentes qui exposent trois types de données. Le premier, en vert, représente la productivité en quintaux, le second, en rouge, la quantité d'hectares cultivés chaque année et le troisième, en bleu, la productivité entendue comme la quantité de quintaux produits par hectare. Les trois graphiques se mettent à jour simultanément grâce au menu déroulant qui permet de modifier la variété analysée. De cette manière, il est possible d'avoir une idée claire et intuitive de la production de chaque année et de la comparer avec les autres prises en analyse. Le seul élément de la visualisation qui pourrait être trompeur est que les deux premiers graphiques sont des nombres absolus tandis que le troisième est un rapport. Par conséquent, même lorsque la production est très faible, le taux de productivité peut être bon, et vous pouvez donc voir les deux premiers graphiques descendre tandis que le troisième reste élevé. En revanche, disposer du graphe de productivité permet d'avoir immédiatement un œil sur les anomalies de production, très claires, par exemple dans le blé. Dans ce cas, l'anomalie de production est due à la fois à la tendance climatique de l'année, mais aussi à la rotation des terres, pas toutes également productives.
+ # Apports de la visualisation
+  Les contributions à la visualisation, en plus de la création de titres et de transitions pour les graphiques, consistent à ajouter un cadre à la visualisation des données afin de la rendre plus claire et plus agréable à voir. En particulier, j'ai ajouté une photo de la ferme, un titre, un sous-titre, une brève description du projet et le lien qui fait référence au site de la ferme dans le footer. De plus, grâce à l'aide de la bibliothèque bootstrap, j'ai changé l'affichage du menu déroulant et centré tous les éléments au centre de la page.
+ 
+
