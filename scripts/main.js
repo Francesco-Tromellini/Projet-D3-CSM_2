@@ -1,5 +1,5 @@
 // Paramètres de la visualisation
-/*const width = 400;
+const width = 400;
 const height = 300;
 const margin = { top: 30, right: 20, bottom: 30, left: 40 };
 
@@ -133,7 +133,7 @@ function setupHectaresOf(){
 
 function graphHectaresOf(){
    const data = productionData.filter(d => d.variety === currentVariety)
-   console.log(productionData);
+   
    // Barres
    hecBars.selectAll('rect')
    .data(data)
@@ -219,7 +219,8 @@ function setupProdOnHec(){
 
 function graphProdOnHec(){
    const data = productionData.filter(d => d.variety === currentVariety)
-   
+   console.log(productionData);
+   console.log(currentVariety);
    // Barres
    phBars.selectAll('rect')
    .data(data)
@@ -338,4 +339,4 @@ function graphProductionOf (){
    
 }
 
-setup();*/
+setup();

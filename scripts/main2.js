@@ -1,20 +1,15 @@
 
-let currentYear = 2016;
+let currentYear = '2016';
 
 let heyScaleX, heyScaleY ;
 let heyBars ;
 let heyColorScale;
 let heyTitles;
-
-let prodDataYear;
-const width = 400;
-const height = 300;
-const margin = { top: 30, right: 20, bottom: 30, left: 40 };
-
-
-let maxHeight;
-
-
+const Carnaroli = 'Carnaroli';
+const Vialone_Nano = 'Vialone_Nano';
+const Augusto = 'Augusto';
+const Soy = 'Soy';
+const Wheat = 'Wheat';
 
 function setupYears () {
     
@@ -25,10 +20,10 @@ function setupYears () {
 }
 
 const years = [
-    {id: '2016', name: '2016'},
-    {id: '2017', name: '2017'},
-    {id: '2018', name: '2018'},
-    {id: '2019', name: '2019'},
+    {id: 2016, name: 2016},
+    {id: 2017, name: 2017},
+    {id: 2018, name: 2018},
+    {id: 2019, name: 2019},
 ];
 
 function loadDataYears(){
@@ -73,7 +68,7 @@ function setupHectaresYears(){
     
     // échelle horizontale
     heyScaleX = d3.scaleBand()
-    .domain(['Carnaroli', 'Vialone Nano', 'Augusto', 'Soya', 'Ble'])
+    .domain([Carnaroli, Vialone_Nano, Augusto, Soy, Wheat])
     .range([margin.left, width - margin.right])
     .padding(0.1)
     .round(true);
@@ -123,6 +118,7 @@ function setupHectaresYears(){
 function graphHectaresYears(){
     const data = prodDataYear.filter(d => d.year === currentYear)
     console.log(prodDataYear);
+    console.log(currentYear);
     
     // Barres
     heyBars.selectAll('rect')
