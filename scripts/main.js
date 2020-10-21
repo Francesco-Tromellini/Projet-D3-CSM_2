@@ -219,8 +219,7 @@ function setupProdOnHec(){
 
 function graphProdOnHec(){
    const data = productionData.filter(d => d.variety === currentVariety)
-   console.log(productionData);
-   console.log(currentVariety);
+   
    // Barres
    phBars.selectAll('rect')
    .data(data)
@@ -306,8 +305,6 @@ function setupProductionOf(){
    .attr('text-anchor', 'middle')
    .text('Production (q)')
    .style('fill', 'green')
-   
-   
 }
 
 function graphProductionOf (){

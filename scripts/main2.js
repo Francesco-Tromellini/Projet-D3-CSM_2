@@ -1,6 +1,6 @@
 
 let currentYear = '2016';
-
+let prodDataYear;
 let heyScaleX, heyScaleY ;
 let heyBars ;
 let heyColorScale;
@@ -11,6 +11,13 @@ const Augusto = 'Augusto';
 const Soy = 'Soy';
 const Wheat = 'Wheat';
 
+const years = [
+    {id: '2016', name: '2016'},
+    {id: '2017', name: '2017'},
+    {id: '2018', name: '2018'},
+    {id: '2019', name: '2019'},
+];
+
 function setupYears () {
     
     loadDataYears();
@@ -19,14 +26,8 @@ function setupYears () {
     
 }
 
-const years = [
-    {id: 2016, name: 2016},
-    {id: 2017, name: 2017},
-    {id: 2018, name: 2018},
-    {id: 2019, name: 2019},
-];
-
 function loadDataYears(){
+    
     d3.dsv(';',`Data/Data_per_Year/Année_${currentYear}.CSV`, function (d){
         return{
             year: d.Year,
@@ -39,7 +40,7 @@ function loadDataYears(){
 
 function onDataLoadedYears(data){
     prodDataYear = data;
-    
+    console.log(currentYear);
     d3.select('#years')
     .selectAll('option')
     .data(years)
@@ -47,7 +48,9 @@ function onDataLoadedYears(data){
     .attr('value', d => d.id)
     .text(d => d.name)
     .each(function(d){
+        
         const option = d3.select(this);
+        console.log(d.id);
         if (d.id === currentYear){
             option.attr('selected', '');
         } else {
@@ -113,12 +116,17 @@ function setupHectaresYears(){
     .text('HectaresYears')
     .style('fill', 'red')
     
+    // mise à jour des données
+    d3.select('#years').on('change', (e) => {
+        const year = d3.event.target.value;
+        currentYear = year;
+        loadDataYears();
+    })
+    
 }
 
 function graphHectaresYears(){
-    const data = prodDataYear.filter(d => d.year === currentYear)
-    console.log(prodDataYear);
-    console.log(currentYear);
+    const data = prodDataYear.filter(d => d.year === currentYear);
     
     // Barres
     heyBars.selectAll('rect')
