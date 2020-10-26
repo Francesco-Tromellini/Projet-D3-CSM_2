@@ -213,8 +213,6 @@ function setupProdOnHec(){
    .attr('text-anchor', 'middle')
    .text('Productivité (Prod./Hectar)')
    .style('fill', 'steelblue')
-   .style('underline')
-   
 }
 
 function graphProdOnHec(){
