@@ -1,12 +1,13 @@
-# Projet de visualisation de données relatives aux récoltes de "Cascina San Maiolo" - années 2016/2019
-
- # Surces de données
-  Les données utilisées pour créer cette visualisation sont extraites du "carnet de campagne" de la ferme. Il est un document officiel vérifié chaque année par la police financière, mais, comme il est une entreprise familiale, les données ne sont pas rendues publiques.
- # Variables retenues
-  Pour cette visualisation je n'ai retenu que quelques variables: année de production, quantité de quintaux produits, hectares cultivés et variétés. Toutes ces variables ont été utiles dans les graphiques.
- # Explicitation de choix graphiques
-  Les choix graphiques tendent vers la simplicité et la clarté. Ce sont trois histogrammes de couleurs différentes qui exposent trois types de données. Le premier, en vert, représente la productivité en quintaux, le second, en rouge, la quantité d'hectares cultivés chaque année et le troisième, en bleu, la productivité entendue comme la quantité de quintaux produits par hectare. Les trois graphiques se mettent à jour simultanément grâce au menu déroulant qui permet de modifier la variété analysée. De cette manière, il est possible d'avoir une idée claire et intuitive de la production de chaque année et de la comparer avec les autres prises en analyse. Le seul élément de la visualisation qui pourrait être trompeur est que les deux premiers graphiques sont des nombres absolus tandis que le troisième est un rapport. Par conséquent, même lorsque la production est très faible, le taux de productivité peut être bon, et vous pouvez donc voir les deux premiers graphiques descendre tandis que le troisième reste élevé. En revanche, disposer du graphe de productivité permet d'avoir immédiatement un œil sur les anomalies de production, très claires, par exemple dans le blé. Dans ce cas, l'anomalie de production est due à la fois à la tendance climatique de l'année, mais aussi à la rotation des terres, pas toutes également productives.
- # Apports de la visualisation
-  Les contributions à la visualisation, en plus de la création de titres et de transitions pour les graphiques, consistent à ajouter un cadre à la visualisation des données afin de la rendre plus claire et plus agréable à voir. En particulier, j'ai ajouté une photo de la ferme, un titre, un sous-titre, une brève description du projet et le lien qui fait référence au site de la ferme dans le footer. De plus, grâce à l'aide de la bibliothèque bootstrap, j'ai changé l'affichage du menu déroulant et centré tous les éléments au centre de la page.
+# 2016 - 2019 visualization of cereal production 
+### The document uses the d3 library to present the visualization of the data relating to the cereal production in the "Cascina San Maiolo" farm between the years 2016 and 2019.
+## The project
+This data visualization project was developed as part of the "Visaulisations des données" course at the University of Lausanne (UNIL) held by professors Isaac Pante and Loïc Cattani.
+The aim is to create a clear and interactive visualization of the cerial production of the farmhouse so that it is possible read the hectares, the production, and the productivity index at a glance.
+## The visualization
+The visualization is mainly divided into two parts which show the same data in different ways. The first part allows you to view hectares, production and productivity (production per hectare) of all the years according to the variety selected with the drop-down menu.
+![](img/First_part.png)
+The second part shows the same data but divides them by variety and allows you to select the year with the drop-down menu.
+![](img/Second_part.png)
  
+
 
